@@ -53,10 +53,10 @@ const  Login = () =>  {
 
   const handleOnSubmit = async(e) => {
     e.preventDefault();
-    console.log(loginUser(form))
+   
   const {data} = await loginUser(form);
   setResponse(data)
-  console.log(data.user.type)
+
 
   if(data.status === "success" && data.user.type === "teacher"){ 
     sessionStorage.setItem("user", JSON.stringify(data.user));

@@ -5,14 +5,21 @@ import { Alert }  from 'react-bootstrap';
 import { CustomInput } from '../custom-input/CustomInput';
 import {Link} from 'react-router-dom';
 import { useState } from 'react';
+import { addBook } from '../../utils/axiosHelper';
+import Layout from '../layout/Layout';
+import SideNavBar from '../layout/SideNavBar';
 
 const initialState ={
-    email:"",
-    name:"",
-    pin: "",
-    type: "" 
+    bookname:"",
+    isbn:"",
+    author: "" ,
+    pdate:"00-00-2022",
+    abstract: "",
+
   }
 const BookForm = () => {
+    const [form, setForm] = useState(initialState);
+    const [response, setResponse] = useState({});
     const inputFields =[
 
         {
@@ -20,64 +27,79 @@ const BookForm = () => {
           placeholder: "joy of living",
           required: true,
           name:'bookname',
-          type:'string'
+          type:'string',
+          value:form.bookname,
         },
         {
           label:'ISBN',
           placeholder: "isbn",
           required: true,
           name:'isbn',
-          type:'text'
+          type:'text',
+          value:form.isbn,
         },
-        {
-          label:'Abstract',
-          placeholder: "",
-          required: true,
-          name:'abstract',
-          type:'string'
-        },
+       
         {
             label:'Author',
             placeholder: "",
             required: true,
             name:'author',
-            type:'string'
+            type:'string',
+            value:form.author,
           },
           {
             label:'Publication Date',
             placeholder: "",
-            required: true,
-            name:'date',
-            type:'date'
-          }
+            name:'pdate',
+            type:'date',
+            value:form.pdate
+          },
+          {
+            label:'Abstract',
+            placeholder: "",
+            name:'abstract',
+            type:"string",
+            as:"textarea",
+            value:form.abstract
+
+          },
          
 
 
 
        
       ]
- const [form, setForm] = useState(initialState);
 
-  const [response, setResponse] = useState({});
 
   const handleOnchange = (e) => {
     const { name, value } = e.target;
-
     setForm( {...form,
      [name]: value,
     });
-    console.log(form)
   };
+
+  const handleOnSubmit = async(e) => {
+    e.preventDefault();
+    console.log(form)
+    const {data} = await addBook(form);
+  setResponse(data)
+  console.log(data)
+
+
+  }
   return (
-    <Form className='login-page'  >
-    <h2> Book search Form </h2>
+    <Layout>
+        <SideNavBar/>
+    <Form className='login-page' onSubmit={handleOnSubmit} >
+    <h2> Register new  book </h2>
     <hr></hr>
     
-    {/* {response.message && 
+    {response.message && 
     (<Alert variant={response.status === "success"? "success": "danger"}>
     {response.message}
     </Alert>
-    )} */}
+    )}
+   
 
     {inputFields.map((item) =>(
       <CustomInput {...item} onChange={handleOnchange} />
@@ -91,7 +113,8 @@ const BookForm = () => {
   Add
   </Button>
   
-</Form>
+    </Form>
+</Layout>
 
     
   )

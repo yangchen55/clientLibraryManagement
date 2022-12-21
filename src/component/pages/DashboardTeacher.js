@@ -9,7 +9,8 @@ const DashboardTeacher = () => {
     <Layout>
    
    <SideNavBar/>
-   <BookForm/>
+   {/* <BookForm/> */}
+   <h1> welcome to Libary Management system</h1>
      
     </Layout>
     

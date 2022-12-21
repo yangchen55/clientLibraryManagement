@@ -1,5 +1,6 @@
 import React from "react";
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import {Link,   useNavigate} from 'react-router-dom';
 
 
 import SideNav, {
@@ -11,8 +12,9 @@ import SideNav, {
 } from "@trendmicro/react-sidenav";
 
 const SideNavBar = () => {
+    const navigate = useNavigate();
   return (
-    <SideNav style={{background:"black"}}
+    <SideNav  expand="md" className=' bg-dark text-light p-2'
     onSelect={(selected) => {
         // Add your code here
     }}
@@ -20,31 +22,30 @@ const SideNavBar = () => {
     <SideNav.Toggle />
     <SideNav.Nav defaultSelected="home">
         <NavItem eventKey="home">
-            <NavIcon>
-                <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
-            </NavIcon>
+           
             <NavText>
                 Home
             </NavText>
         </NavItem>
-        <NavItem eventKey="charts">
-            <NavIcon>
+        <NavItem >
+            {/* <NavIcon>
                 <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
-            </NavIcon>
+            </NavIcon> */}
             <NavText>
-                Charts
+                <Link to="/addBook" className='NavText'>add book</Link>
             </NavText>
-            <NavItem eventKey="charts/linechart">
+            </NavItem >  
+       <NavItem >
                 <NavText>
-                    Line Chart
+                <Link to="/viewBook" className='NavText'>View book</Link>
                 </NavText>
-            </NavItem>
-            <NavItem eventKey="charts/barchart">
-                <NavText>
-                    Bar Chart
-                </NavText>
-            </NavItem>
         </NavItem>
+        <NavItem >
+                <NavText>
+                   Update book
+                </NavText>
+        </NavItem>
+        
     </SideNav.Nav>
 </SideNav>
 
