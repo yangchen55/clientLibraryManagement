@@ -31,7 +31,7 @@ function Header() {
           <Nav className="ms-auto">
             {user?._id?(
               <>
-               <div className='nav-link fw-bolder text-warning'> {""} welcome back {user?.name}</div>
+          <div className='nav-link fw-bolder text-warning'> {""} welcome back {user.name}</div>
 
 
             

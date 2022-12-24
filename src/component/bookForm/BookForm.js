@@ -1,25 +1,25 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Alert }  from 'react-bootstrap';
 import { CustomInput } from '../custom-input/CustomInput';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import { addBook } from '../../utils/axiosHelper';
 import Layout from '../layout/Layout';
 import SideNavBar from '../layout/SideNavBar';
+import {toast} from "react-toastify";
+import LayoutTeacher from '../layout/LayoutTeacher';
 
-const initialState ={
+const initialState = {
     bookname:"",
     isbn:"",
     author: "" ,
-    pdate:"00-00-2022",
+    pdate:'dd/mm/yyyy',
     abstract: "",
 
   }
 const BookForm = () => {
     const [form, setForm] = useState(initialState);
-    const [response, setResponse] = useState({});
     const inputFields =[
 
         {
@@ -78,28 +78,28 @@ const BookForm = () => {
     });
   };
 
+
+
   const handleOnSubmit = async(e) => {
     e.preventDefault();
     console.log(form)
-    const {data} = await addBook(form);
-  setResponse(data)
-  console.log(data)
+  const { status, message }  = await addBook(form);
+  toast[status](message);
+  console.log(status, message)
+  setForm(initialState)
+
+  
 
 
   }
   return (
-    <Layout>
+    <LayoutTeacher>
         <SideNavBar/>
     <Form className='login-page' onSubmit={handleOnSubmit} >
     <h2> Register new  book </h2>
     <hr></hr>
     
-    {response.message && 
-    (<Alert variant={response.status === "success"? "success": "danger"}>
-    {response.message}
-    </Alert>
-    )}
-   
+    
 
     {inputFields.map((item) =>(
       <CustomInput {...item} onChange={handleOnchange} />
@@ -114,7 +114,7 @@ const BookForm = () => {
   </Button>
   
     </Form>
-</Layout>
+</LayoutTeacher>
 
     
   )

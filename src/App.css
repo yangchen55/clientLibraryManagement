@@ -1,3 +1,7 @@
+.App{
+  position: relative;
+}
+
 .login-page{
   width: 400px;
   border: 1px solid rgba(128, 128, 128, 0.245);
@@ -13,6 +17,14 @@
 .layout{
   background: rgba(212, 205, 225, 0.778);
   min-height: 100vh;
+  /* margin-left: 100px; */
+
+}
+.layoutTeacher{
+  background: rgba(212, 205, 225, 0.778);
+  min-height: 100vh;
+  margin-left: 100px; 
+
 }
 
 .form{
@@ -35,11 +47,23 @@
 
 }
 
-.booktable{
+/* .booktable{
   margin-left:50px;
+} */
+
+
+.sidenav{
+  height: 100%;
+  width: 100px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  /* overflow-x: hidden; */
+  transition: 0.5s;
+  /* padding-top: 60px; */
+
 }
-
-
 
 
 

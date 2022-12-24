@@ -4,25 +4,61 @@ import SideNavBar from '../layout/SideNavBar'
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { Container, ButtonGroup } from 'react-bootstrap';
-import { viewBook } from '../../utils/axiosHelper';
+import { deleteBook, viewBook } from '../../utils/axiosHelper';
+import LayoutTeacher from '../layout/LayoutTeacher';
 
 
 const ViewBook = () => {
     const [books, setBooks] = useState([]);
+    const [idsToDelete, setIdsToDelete] = useState([]);
     useEffect(() => {
         getAllBooks();
     
     }, [])
+
+
     const getAllBooks = async() => {
         const {books} = await viewBook()
         setBooks(books)
     }
-    console.log("hiii",  books)
-    console.log(books.bookname)
+  
 
+
+
+
+    // to delete single row 
+  const handleOnDelete = async(bookitem, e) => {
+    if(window.confirm(`are you sure you want to delete item(s)`)){
+
+
+    const temparg = books.filter((item )  => item._id !==  bookitem);
+    setIdsToDelete([...idsToDelete, bookitem])
+  
+    // console.log("ids to deelte tetsig", bookitem)
+    console.log("ids to deelte state tetsig", idsToDelete)
+    console.log("ids to deelte state tetsig", bookitem)
+    
+    setBooks(temparg)
+    
+
+
+
+
+    const {status, message} = await deleteBook(idsToDelete);
+    console.log(status)
+    if (status === "success") {
+      // setIdsToDelete([]);
+      getAllBooks();
+    }
+
+  }
+  }
+  
+
+ 
 
   return (
-    <Layout>
+    <LayoutTeacher>
         <SideNavBar/>
         <Table responsive="sm" striped bordered hover className='booktable'>
       <thead>
@@ -38,8 +74,6 @@ const ViewBook = () => {
       <tbody>
         {books.map((item, index) => (
             <tr key={item._id}>
-            
-            
             <td>{index + 1} </td>
             <td>{item.bookname}</td>
             <td>{item.isbn}</td>
@@ -51,7 +85,7 @@ const ViewBook = () => {
             <td>
           
             <Button variant='success'>Edit</Button>
-              <Button variant='danger' className="m-2">Delete</Button>
+              <Button variant='danger' className="m-2" onClick={e => handleOnDelete(item._id, e)}>Delete</Button>
               <Button>View</Button>
           </td>
           </tr>
@@ -67,7 +101,7 @@ const ViewBook = () => {
       </tbody>
     </Table>
 
-    </Layout>
+    </LayoutTeacher>
   )
 }
 

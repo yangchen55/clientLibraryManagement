@@ -13,13 +13,14 @@ import SideNav, {
 
 const SideNavBar = () => {
     const navigate = useNavigate();
+ 
   return (
-    <SideNav  expand="md" className=' bg-dark text-light p-2'
+    <SideNav   className='bg-dark text-light p-2 sidenav'
     onSelect={(selected) => {
         // Add your code here
     }}
 >
-    <SideNav.Toggle />
+    <SideNav.Toggle/>
     <SideNav.Nav defaultSelected="home">
         <NavItem eventKey="home">
            

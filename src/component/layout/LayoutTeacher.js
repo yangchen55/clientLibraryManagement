@@ -3,9 +3,9 @@ import Header from './Header'
 import Container from "react-bootstrap/esm/Container"
 import Footer from './Footer'
 
-const Layout = ({children}) => {
+const LayoutTeacher = ({children}) => {
   return (
-    <div className='layout'>
+    <div className='layoutTeacher'>
         <Header/>
         <Container className='mt-5' style={{minHeight:"73vh"}}> 
         {children}
@@ -17,4 +17,5 @@ const Layout = ({children}) => {
   )
 }
 
-export default Layout;
+export default LayoutTeacher
+

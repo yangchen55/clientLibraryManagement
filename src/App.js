@@ -6,6 +6,9 @@ import DashboardStudent from './component/pages/DashboardStudent';
 import DashboardTeacher from './component/pages/DashboardTeacher';
 import BookForm from './component/bookForm/BookForm';
 import ViewBook from './component/bookForm/ViewBook';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -14,7 +17,7 @@ function App() {
      <Routes>
 
 <Route  path="/" element={<Login/>} />
- <Route  path="register" element={<Register/>} />
+<Route  path="register" element={<Register/>} />
 <Route  path="dashboardstudent" element={<DashboardStudent/>} />
 <Route  path="dashboardteacher" element={<DashboardTeacher/>} />
 <Route  path="addBook" element={<BookForm/>} />
@@ -22,7 +25,10 @@ function App() {
 
 
 
+
+
   </Routes>
+  <ToastContainer/>
    
     
     </div>

@@ -62,6 +62,7 @@ const  Login = () =>  {
     sessionStorage.setItem("user", JSON.stringify(data.user));
     navigate("/dashboardteacher");
  }else{
+  sessionStorage.setItem("user", JSON.stringify(data.user));
     navigate("/dashboardstudent");
 
  }
