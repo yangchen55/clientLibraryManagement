@@ -80,7 +80,7 @@ const ViewBook = () => {
             <td>{item.author}</td>
             <td>
             
-            { new Date(item.pdate).toLocaleString()}
+            { new Date(item.pdate).toLocaleDateString()}
             </td>
             <td>
           
@@ -96,7 +96,7 @@ const ViewBook = () => {
         <tr>
         
           <td colSpan={4}>Total numbers of book</td>
-          <td>@twitter</td>
+          <td>{books.length}</td>
         </tr>
       </tbody>
     </Table>

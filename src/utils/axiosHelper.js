@@ -3,6 +3,8 @@ import axios from 'axios'
 const rootUrl = "http://localhost:8000/api/v1"
 const userUrl = rootUrl + "/user";
 const bookUrl = rootUrl + "/book";
+const transUrl = rootUrl + "/trans";
+
 
 
 const getUserIdFromStorage = () => {
@@ -18,9 +20,7 @@ const getUserIdFromStorage = () => {
 
 export const postUser = (formData) => {
     try{
-        return axios.post(userUrl, formData)
-        
-
+        return axios.post(userUrl, formData)       
     }catch(error){
         return {
             status : "error",
@@ -89,6 +89,7 @@ export const viewBook = async()  => {
                 Authorization: userId,
             },
         })
+        // console.log(data)
         return data;
         
     } catch (error) {
@@ -102,8 +103,6 @@ export const viewBook = async()  => {
 }
 
 
-
-
 export const deleteBook = async(_idsArg) => {
     try {
         const userId = getUserIdFromStorage(); 
@@ -112,7 +111,6 @@ export const deleteBook = async(_idsArg) => {
             return {
                 status: "error",
                 message: "you must be logged in"
-
             }
         }
         const {data}  = await axios.delete(bookUrl, {data:_idsArg, headers:{Authorization : userId},})
@@ -130,5 +128,46 @@ export const deleteBook = async(_idsArg) => {
 }
 
 
-// for srudent 
+// for transaction 
+export const viewTransaction = async() => {
+    try {
+        const {data} = await axios.get(transUrl)
+        return data
+        return{
+            status:"i am from transaction"
+        
+        }
 
+        
+    } catch (error) {
+        return{
+            status:"error hdfjhk",
+            message: error.message
+        }
+        
+    }
+}
+export const addTransaction = async(formData) => {
+    try {
+        // const userId = getUserIdFromStorage();
+        // if(!userId){
+        //     return {
+        //         status: "error",
+        //         message: "You must be logged in "
+        //     }
+        // }
+
+        const {data}  = await axios.post(transUr
+            )
+            // console.log("from axios",data)
+            return data;
+        // console.log("iam from axios: book testing")
+        
+    } catch (error) {
+        return{
+            status: "error",
+            message: error.message,
+        }
+        
+    }
+}
