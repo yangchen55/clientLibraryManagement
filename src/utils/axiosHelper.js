@@ -103,7 +103,7 @@ export const viewBook = async()  => {
 }
 
 
-export const deleteBook = async(_idsArg) => {
+export const deleteBook = async(id) => {
     try {
         const userId = getUserIdFromStorage(); 
         console.log("from delete axios testing");
@@ -113,7 +113,7 @@ export const deleteBook = async(_idsArg) => {
                 message: "you must be logged in"
             }
         }
-        const {data}  = await axios.delete(bookUrl, {data:_idsArg, headers:{Authorization : userId},})
+        const {data}  = await axios.delete(bookUrl, {data:{id}, headers:{Authorization : userId},})
         return data;
         
 
@@ -147,19 +147,28 @@ export const viewTransaction = async() => {
         
     }
 }
-export const addTransaction = async(formData) => {
+export const addTransaction = async(_id, bookname, isbn) => {
     try {
-        // const userId = getUserIdFromStorage();
-        // if(!userId){
-        //     return {
-        //         status: "error",
-        //         message: "You must be logged in "
-        //     }
-        // }
+        const userId = getUserIdFromStorage();
+        if(!userId){
+            return {
+                status: "error",
+                message: "You must be logged in "
+            }
+        }
+        const dta = {
+            bookId:_id, bookname:bookname, isbn:isbn}
+       
+        const config =  {
+            headers:{
+                Authorization: userId
+            }
 
-        const {data}  = await axios.post(transUr
-            )
-            // console.log("from axios",data)
+        }
+        const {data}  = await axios.post(transUrl, dta, config)
+
+
+        // console.log("from axios",data)
             return data;
         // console.log("iam from axios: book testing")
         

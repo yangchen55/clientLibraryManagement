@@ -1,101 +1,86 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import {Link,   useNavigate} from 'react-router-dom';
-import { useState } from 'react';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { loginUser } from "../../utils/axiosHelper";
+import { Alert } from "react-bootstrap";
+import Layout from "../layout/Layout";
+import { CustomInput } from "../custom-input/CustomInput";
 
-import { loginUser } from '../../utils/axiosHelper';
-import { Alert }  from 'react-bootstrap';
-import Layout from '../layout/Layout';
-import { CustomInput } from '../custom-input/CustomInput';
-    
-
-const  Login = () =>  {
+const Login = () => {
   const navigate = useNavigate();
- 
+
   const [form, setForm] = useState({
-    email : 'a@gmail.com',
-    pin: 1234
+    email: "a@gmail.com",
+    pin: 1234,
   });
 
   const [response, setResponse] = useState({});
-  const inputFields =[
-
+  const inputFields = [
     {
-      label:'email',
+      label: "Email",
       placeholder: "@email.com",
       required: true,
-      name:'email',
-      type:'email',
-      value: form.email
+      name: "email",
+      type: "email",
+      value: form.email,
     },
-   
+
     {
-      label:'pin',
+      label: "password",
       placeholder: "1243",
       required: true,
-      name:'pin',
-      type:'number',
+      name: "pin",
+      type: "number",
       min: 1000,
-      max:9999,
-      value:form.pin
-    }
-  ]
+      max: 9999,
+      value: form.pin,
+    },
+  ];
 
   const handleOnchange = (e) => {
     const { name, value } = e.target;
 
-    setForm( {...form,
-     [name]: value,
-    });
-    console.log(form)
+    setForm({ ...form, [name]: value });
+    console.log(form);
   };
 
-
-  const handleOnSubmit = async(e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-   
-  const {data} = await loginUser(form);
-  setResponse(data)
 
+    const { data } = await loginUser(form);
+    setResponse(data);
 
-  if(data.status === "success" && data.user.type === "teacher"){ 
-    sessionStorage.setItem("user", JSON.stringify(data.user));
-    navigate("/dashboardteacher");
- }else{
-  sessionStorage.setItem("user", JSON.stringify(data.user));
-    navigate("/dashboardstudent");
-
- }
-
-
-
-    
-
- 
+    if (data.status === "success" && data.user.type === "teacher") {
+      sessionStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/dashboardteacher");
+    } else {
+      sessionStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/dashboardstudent");
+    }
   };
 
   return (
-   <Layout>
-    <Form className='login-page' onSubmit={handleOnSubmit}>
-        <h2> Welcome back 👋 login</h2>
+    <Layout>
+      <Form className="login-page" onSubmit={handleOnSubmit}>
+        <h2> Welcome 👋 login</h2>
         <hr></hr>
-        {response.message && 
-        (<Alert variant={response.status === "success"? "success": "danger"}>
-        {response.message}
-        </Alert>
+        {response.message && (
+          <Alert variant={response.status === "success" ? "success" : "danger"}>
+            {response.message}
+          </Alert>
         )}
-        {inputFields.map((item) =>(
-          <CustomInput {...item} onChange={handleOnchange}/>
+        {inputFields.map((item) => (
+          <CustomInput {...item} onChange={handleOnchange} />
         ))}
-   
-    
-      <Button variant="primary" type="submit">
-        Login
-      </Button>
-      <div className='text-end'>
-        New here? <Link to ='/register'>Register </Link>
-      </div>
-    </Form>
+
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+        <div className="text-end">
+          New here? <Link to="/register">Register </Link>
+        </div>
+      </Form>
     </Layout>
   );
 };

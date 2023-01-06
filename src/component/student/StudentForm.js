@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import {viewBook } from '../../utils/axiosHelper';
+import {addTransaction, viewBook } from '../../utils/axiosHelper';
 import Card from 'react-bootstrap/Card';
 
 // const initialState = {
@@ -38,14 +38,19 @@ import Card from 'react-bootstrap/Card';
    
        
      }
-     const addToBorrow = (e) => {
-      
+     const addToBorrow = async(e) => {
         const {value}= e.target;
         setBooks( books.filter(item => item._id !== value) )
         const temp = books.filter((item, index ) => item._id === value)
         // merging two array is like ass jesus
       
         setBorrowList([...borrowList, ...temp])
+        console.log(temp)
+        const [{_id, bookname, isbn}] = temp
+       
+        
+        const { status, message }  = await addTransaction(_id, bookname, isbn);
+        console.log(status, message)
        
         
      }

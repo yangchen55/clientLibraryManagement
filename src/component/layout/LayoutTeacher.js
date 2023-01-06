@@ -1,21 +1,21 @@
-import React from 'react'
-import Header from './Header'
-import Container from "react-bootstrap/esm/Container"
-import Footer from './Footer'
+import React from "react";
+import Header from "./Header";
+import Container from "react-bootstrap/esm/Container";
+import Footer from "./Footer";
+import SideNavBar from "./SideNavBar";
 
-const LayoutTeacher = ({children}) => {
+const LayoutTeacher = ({ children }) => {
   return (
-    <div className='layoutTeacher'>
-        <Header/>
-        <Container className='mt-5' style={{minHeight:"73vh"}}> 
-        {children}
-        </Container>
+    <div className="main">
+      <div className="exceptside">
+        <Header />
+        <Container className="teacherContainer">{children}</Container>
+        <Footer />
+      </div>
 
+      <SideNavBar />
+    </div>
+  );
+};
 
-        <Footer/>
-         </div>
-  )
-}
-
-export default LayoutTeacher
-
+export default LayoutTeacher;

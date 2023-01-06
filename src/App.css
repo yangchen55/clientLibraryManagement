@@ -1,84 +1,91 @@
-.App{
+.App {
   position: relative;
 }
 
-.login-page{
+.login-page {
   width: 400px;
-  border: 1px solid rgba(128, 128, 128, 0.245);
+  border: 1px solid rgba(171, 148, 148, 0.245);
   padding: 2rem;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.331);
-  margin:auto;
-  box-shadow: -5px 5px 15px 10px rgba(255, 255, 255, 0.173);
+  background: rgba(193, 212, 211, 0.927);
+  margin: auto;
+  box-shadow: -5px 5px 15px 10px rgba(159, 139, 139, 0.227);
 }
 
-
-
-.layout{
-  background: rgba(212, 205, 225, 0.778);
+.dash-page {
+  width: 400px;
+  border: 1px solid rgba(171, 148, 148, 0.245);
+  padding: 2rem;
+  border-radius: 5px;
+  background: rgba(46, 125, 121, 0.519);
+  margin: auto;
+  box-shadow: -5px 5px 15px 10px rgba(159, 139, 139, 0.227);
+}
+.addbook-page {
+  width: 400px;
+  border: 1px solid rgba(171, 148, 148, 0.245);
+  padding: 2rem;
+  border-radius: 5px;
+  background: rgba(25, 125, 120, 0.927);
+  margin: auto;
+  margin-top: 10px;
+  box-shadow: -5px 5px 15px 10px rgba(159, 139, 139, 0.227);
+}
+/* layout of login page  */
+.layout {
+  background-image: url(./assets/libraryback.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100vh;
-  /* margin-left: 100px; */
-
 }
-.layoutTeacher{
-  background: rgba(212, 205, 225, 0.778);
+/* teacher layout  */
+.teacherContainer {
   min-height: 100vh;
-  margin-left: 100px; 
-
+  position: relative;
+  z-index: 2;
+  color: #fff;
 }
 
-.form{
-  background: white;
+.table {
+  background: rgba(188, 197, 197, 0.964);
+
+  border-radius: 7px;
+  margin-top: 5px;
+  padding: 1rem;
+  min-height: 100px;
+  box-shadow: -5px 5px 5px 10px rgba(128, 128, 128, 0.185);
+}
+
+/* for side bar to be dynamic */
+.exceptside {
+  margin-left: 100px;
+  transition: margin-left 0.5s;
+  background-image: url(./assets/teacher.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.sidenav {
+  width: 100px;
+  position: fixed;
+  /* z-index: -1; */
+  top: 0;
+  left: 0;
+  background: rgba(38, 38, 38, 0.975) !important;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+.form {
+  background: rgb(185, 140, 140);
   border-radius: 5px;
   padding: 1rem;
   min-height: 100px;
-  box-shadow: -5px 5px 5px 10px  rgba(128, 128, 128, 0.185);
- 
-}
-
-
-.table{
-  background: rgb(195, 179, 179);
-  border-radius: 7px;
-  margin-top:5px;
-  padding: 1rem;
-  min-height: 100px;
-  box-shadow: -5px 5px 5px 10px  rgba(128, 128, 128, 0.185);
-
+  box-shadow: -5px 5px 5px 10px rgba(128, 128, 128, 0.185);
 }
 
 /* .booktable{
   margin-left:50px;
 } */
-
-
-.sidenav{
-  height: 100%;
-  width: 100px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  /* overflow-x: hidden; */
-  transition: 0.5s;
-  /* padding-top: 60px; */
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
