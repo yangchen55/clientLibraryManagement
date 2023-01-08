@@ -9,6 +9,7 @@ import ViewBook from "./component/bookForm/ViewBook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LayoutTeacher from "./component/layout/LayoutTeacher";
+import ViewDetails from "./component/bookForm/ViewDetails";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="dashboardteacher" element={<DashboardTeacher />} />
         <Route path="addBook" element={<BookForm />} />
         <Route path="viewBook" element={<ViewBook />} />
+        <Route path="viewDetails" element={<ViewDetails />} />
       </Routes>
       <ToastContainer />
     </div>

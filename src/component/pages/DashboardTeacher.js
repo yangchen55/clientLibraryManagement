@@ -21,28 +21,6 @@ const DashboardTeacher = ({ children }) => {
           introductory video
         </div>
       </Container>
-      <Container className=" mt-5 dash-page">
-        <h1>welcome to library management System</h1>
-        <hr></hr>
-        <div></div>
-      </Container>
-
-      <Container className=" mt-5 dash-page">
-        <h1>welcome to library management System</h1>
-        <hr></hr>
-        <div>
-          Leganto support for academics Quick start guide: tools and features
-          Leganto - Getting started tutorial: interactive guide while you use
-          Leganto Leganto guide: guidance on creating a course material list,
-          adding resources, sharing with your class and troubleshooting Leganto
-          introductory video
-        </div>
-      </Container>
-      <Container className=" mt-5 dash-page">
-        <h1>welcome to library management System</h1>
-        <hr></hr>
-        <div></div>
-      </Container>
     </LayoutTeacher>
   );
 };

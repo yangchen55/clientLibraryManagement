@@ -1,45 +1,43 @@
-import React from 'react'
-import Layout from '../layout/Layout'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import {Link} from 'react-router-dom';
-import { useState } from 'react';
-import { Alert }  from 'react-bootstrap';
-import { CustomInput } from '../custom-input/CustomInput';
-import { postUser } from '../../utils/axiosHelper';
+import React from "react";
+import Layout from "../layout/Layout";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Alert } from "react-bootstrap";
+import { CustomInput } from "../custom-input/CustomInput";
+import { postUser } from "../../utils/axiosHelper";
 
-const initialState ={
-  email:"",
-  name:"",
+const initialState = {
+  email: "",
+  name: "",
   pin: "",
-  type: "" 
-}
+  type: "",
+};
 const Register = () => {
-  const inputFields =[
-
+  const inputFields = [
     {
-      label:'email',
+      label: "email",
       placeholder: "tse@email.com",
       required: true,
-      name:'email',
-      type:'email'
+      name: "email",
+      type: "email",
     },
     {
-      label:'name',
+      label: "name",
       placeholder: "name",
       required: true,
-      name:'name',
-      type:'text'
+      name: "name",
+      type: "text",
     },
     {
-      label:'pin',
+      label: "pin",
       placeholder: "1243",
       required: true,
-      name:'pin',
-      type:'number'
-    }
-   
-  ]
+      name: "pin",
+      type: "number",
+    },
+  ];
 
   const [form, setForm] = useState(initialState);
 
@@ -48,63 +46,57 @@ const Register = () => {
   const handleOnchange = (e) => {
     const { name, value } = e.target;
 
-    setForm( {...form,
-     [name]: value,
-    });
-    console.log(form)
+    setForm({ ...form, [name]: value });
+    console.log(form);
   };
 
-
-  const handleOnSubmit = async(e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    
-    const {data} = await postUser(form);
-   
-    setResponse(data)
-  
-     console.log("hi this is from register");
 
-    
-  
- 
+    const { data } = await postUser(form);
+
+    setResponse(data);
+
+    console.log("hi this is from register");
   };
-
 
   return (
-   <Layout>
-     <Form className='login-page'  onSubmit={handleOnSubmit}>
+    <Layout>
+      <Form className="login-page" onSubmit={handleOnSubmit}>
         <h2> Register</h2>
         <hr></hr>
-        
-        {response.message && 
-        (<Alert variant={response.status === "success"? "success": "danger"}>
-        {response.message}
-        </Alert>
+
+        {response.message && (
+          <Alert variant={response.status === "success" ? "success" : "danger"}>
+            {response.message}
+          </Alert>
         )}
 
-        {inputFields.map((item) =>(
+        {inputFields.map((item) => (
           <CustomInput {...item} onChange={handleOnchange} />
-        ) )} 
+        ))}
 
-       <Form.Select onChange={handleOnchange} name='type' value={form.type}   required className='mb-3'>
+        <Form.Select
+          onChange={handleOnchange}
+          name="type"
+          value={form.type}
+          required
+          className="mb-3"
+        >
           <option>chooose</option>
           <option value="teacher">teacher</option>
           <option value="student">student</option>
-        </Form.Select> 
-     
+        </Form.Select>
 
-      
-      <Button variant="primary" type="submit" >
-        Submit
-      </Button>
-      <div className='text-end'>
-        New here? <Link to ='/'>Login </Link>
-      </div>
-    </Form>
-    
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+        <div className="text-end">
+          Already have a account? <Link to="/">Login </Link>
+        </div>
+      </Form>
+    </Layout>
+  );
+};
 
-   </Layout>
-  )
-}
-
-export default Register
+export default Register;

@@ -35,7 +35,7 @@ function Header() {
               <>
                 <div className="nav-link fw-bolder text-warning">
                   {" "}
-                  {""} welcome back {user.name}
+                  {""} welcome back <bold>{user.name}</bold>
                 </div>
 
                 <Link to="/" className="nav-link" onClick={handleOnLogOut}>

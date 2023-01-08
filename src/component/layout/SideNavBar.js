@@ -42,7 +42,11 @@ const SideNavBar = () => {
           </NavText>
         </NavItem>
         <NavItem>
-          <NavText>Update book</NavText>
+          <NavText>
+            <Link to="/viewDetails" className="NavText">
+              Transaction
+            </Link>
+          </NavText>
         </NavItem>
       </SideNav.Nav>
     </SideNav>

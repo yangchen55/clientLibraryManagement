@@ -78,7 +78,7 @@ const ViewBook = () => {
           ))}
 
           <tr>
-            <td colSpan={4}>Total numbers of book</td>
+            <td colSpan={5}>Total numbers of book</td>
             <td>{books.length}</td>
           </tr>
         </tbody>
