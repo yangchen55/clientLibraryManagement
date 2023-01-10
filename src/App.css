@@ -1,6 +1,15 @@
 .App {
   position: relative;
 }
+.heading {
+  /* width: 400px; */
+  color: white;
+  text-align: center;
+  width: 400px !important;
+  margin: auto;
+  background-color: rgba(3, 22, 22, 0.245);
+  box-shadow: -5px 5px 15px 10px rgba(159, 139, 139, 0.227);
+}
 
 .login-page {
   width: 400px;
@@ -47,13 +56,13 @@
   color: #fff;
 }
 
-.table {
-  background: rgba(188, 197, 197, 0.964);
-
+.booktable {
+  background: rgba(179, 200, 200, 0.667);
   border-radius: 7px;
   margin-top: 5px;
   padding: 1rem;
   min-height: 100px;
+
   box-shadow: -5px 5px 5px 10px rgba(128, 128, 128, 0.185);
 }
 

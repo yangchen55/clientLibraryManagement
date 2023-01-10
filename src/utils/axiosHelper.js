@@ -7,7 +7,7 @@ const transUrl = rootUrl + "/trans";
 
 const getUserIdFromStorage = () => {
   const user = sessionStorage.getItem("user");
-  console.log(user);
+  // console.log(user);
   if (user) {
     const userObj = JSON.parse(user);
     // console.log(userObj._id);
@@ -117,20 +117,19 @@ export const deleteBook = async (id) => {
 export const viewTransaction = async () => {
   try {
     const { data } = await axios.get(transUrl);
+    // console.log("from axios view", data);
     return data;
-    return {
-      status: "i am from transaction",
-    };
   } catch (error) {
     return {
-      status: "error hdfjhk",
+      status: "error from axios",
       message: error.message,
     };
   }
 };
-export const addTransaction = async (_id, bookname, isbn) => {
+export const addTransaction = async (_id, bookname, isbn, studentName) => {
   try {
     const userId = getUserIdFromStorage();
+    console.log("userif chekjkllk", userId);
     if (!userId) {
       return {
         status: "error",
@@ -141,6 +140,7 @@ export const addTransaction = async (_id, bookname, isbn) => {
       bookId: _id,
       bookname: bookname,
       isbn: isbn,
+      studentName: studentName,
     };
 
     const config = {
@@ -150,7 +150,7 @@ export const addTransaction = async (_id, bookname, isbn) => {
     };
     const { data } = await axios.post(transUrl, dta, config);
 
-    // console.log("from axios",data)
+    console.log("from axios", data);
     return data;
     // console.log("iam from axios: book testing")
   } catch (error) {
