@@ -24,8 +24,6 @@ const StudentForm = () => {
   });
 
   useEffect(() => {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    setUser(user);
     searchPhotos();
     getAllBooks();
     getAllTrans();
@@ -59,23 +57,11 @@ const StudentForm = () => {
   };
 
   const getAllTrans = async (e) => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    setUser(user);
     const { trans } = await viewTransaction();
-    trans.map((item, index) => {
-      if (user._id === item["userId"]) {
-        console.log("fucking true");
-        return item;
-      }
-      console.log(item);
-
-      setBorrowList([{ item }]);
-      console.log(item["userId"]);
-    });
-    // setBorrowList(trans);
-
-    // console.log(trans);
+    setBorrowList(trans.filter((item, index) => item.userId === user._id));
   };
-
-  console.log(borrowList);
 
   const addToBorrow = async (e) => {
     const { value } = e.target;
