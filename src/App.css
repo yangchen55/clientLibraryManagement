@@ -47,6 +47,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+  margin: 0;
+}
+.layout-blur {
+  backdrop-filter: blur(5px);
 }
 /* teacher layout  */
 .teacherContainer {
@@ -54,6 +58,7 @@
   position: relative;
   z-index: 2;
   color: #fff;
+  backdrop-filter: blur(5px);
 }
 
 .booktable {
@@ -62,7 +67,6 @@
   margin-top: 5px;
   padding: 1rem;
   min-height: 100px;
-
   box-shadow: -5px 5px 5px 10px rgba(128, 128, 128, 0.185);
 }
 
@@ -94,7 +98,3 @@
   min-height: 100px;
   box-shadow: -5px 5px 5px 10px rgba(128, 128, 128, 0.185);
 }
-
-/* .booktable{
-  margin-left:50px;
-} */

@@ -126,7 +126,16 @@ export const viewTransaction = async () => {
     };
   }
 };
-export const addTransaction = async (_id, bookname, isbn, studentName) => {
+
+export const addTransaction = async (
+  _id,
+  bookname,
+  isbn,
+  studentName,
+  author,
+  pdate,
+  abstract
+) => {
   try {
     const userId = getUserIdFromStorage();
     console.log("userif chekjkllk", userId);
@@ -140,6 +149,9 @@ export const addTransaction = async (_id, bookname, isbn, studentName) => {
       bookId: _id,
       bookname: bookname,
       isbn: isbn,
+      author: author,
+      pdate: pdate,
+      abstract: abstract,
       studentName: studentName,
     };
 

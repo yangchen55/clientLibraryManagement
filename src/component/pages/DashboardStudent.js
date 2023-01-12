@@ -1,17 +1,13 @@
-import React from 'react'
-import Layout from '../layout/Layout'
-import StudentForm from '../student/StudentForm'
-
-
+import React from "react";
+import Layout from "../layout/Layout";
+import StudentForm from "../student/StudentForm";
 
 const DashboardStudent = () => {
   return (
     <Layout>
-      <StudentForm/>
-
+      <StudentForm />
     </Layout>
+  );
+};
 
-  )
-}
-
-export default DashboardStudent
+export default DashboardStudent;
