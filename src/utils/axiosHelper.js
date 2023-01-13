@@ -138,7 +138,7 @@ export const addTransaction = async (
 ) => {
   try {
     const userId = getUserIdFromStorage();
-    console.log("userif chekjkllk", userId);
+
     if (!userId) {
       return {
         status: "error",
@@ -165,6 +165,31 @@ export const addTransaction = async (
     console.log("from axios", data);
     return data;
     // console.log("iam from axios: book testing")
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+export const deleteBorrowBooks = async (id) => {
+  try {
+    const userId = getUserIdFromStorage();
+
+    if (!userId) {
+      return {
+        status: "error",
+        message: "you must be logged in",
+      };
+    }
+    const { data } = await axios.delete(transUrl, {
+      data: { id },
+      headers: { Authorization: userId },
+    });
+    console.log("from delete axios delete trans testing", data);
+
+    return data;
   } catch (error) {
     return {
       status: "error",

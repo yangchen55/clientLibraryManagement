@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import {
   addTransaction,
+  deleteBorrowBooks,
   viewBook,
   viewTransaction,
 } from "../../utils/axiosHelper";
@@ -12,6 +14,7 @@ import { createApi } from "unsplash-js";
 
 const StudentForm = () => {
   const [searchbook, setSearchBook] = useState("");
+  const [response, setResponse] = useState("");
   const [books, setBooks] = useState([]);
   const [borrowList, setBorrowList] = useState([]);
   const [user, setUser] = useState({});
@@ -65,14 +68,14 @@ const StudentForm = () => {
 
   const addToBorrow = async (e) => {
     const { value } = e.target;
-    setBooks(books.filter((item) => item._id !== value));
+
     const temp = books.filter((item, index) => item._id === value);
     // merging two array is like ass jesus
     // setBorrowList([...borrowList, ...temp]);
     // console.log(temp);
     const [{ _id, bookname, isbn, author, pdate, abstract }] = temp;
 
-    const { status, message } = await addTransaction(
+    const data = await addTransaction(
       _id,
       bookname,
       isbn,
@@ -81,11 +84,27 @@ const StudentForm = () => {
       abstract,
       user.name
     );
-    console.log(status, message, user.name);
+
+    setResponse(data);
+    getAllTrans();
+    getAllBooks();
+    // setBooks(books.filter((item) => item._id !== value));
+
+    // console.log(message, user.name);
   };
 
-  const returnBook = (e) => {
+  const returnBook = async (e) => {
     const { value } = e.target;
+    // console.log(value);
+    const temp = borrowList.filter((item, index) => item._id === value);
+    const [{ _id }] = temp;
+    // console.log(_id);
+
+    const data = await deleteBorrowBooks(_id);
+    console.log(data);
+
+    getAllTrans();
+
     // setBorrowList(borrowList.filter((item, index) => item._id !== value));
     // const temp = borrowList.filter((item, index) => item._id === value);
     // setBooks([...books, ...temp]);
@@ -119,6 +138,11 @@ const StudentForm = () => {
       <Container className="heading">
         <h1>Available book List</h1>
       </Container>
+      {response.message && (
+        <Alert variant={response.status === "success" ? "success" : "danger"}>
+          {response.message}
+        </Alert>
+      )}
       <Row>
         {books.map((item, index) =>
           item.bookname.includes(searchbook) ? (

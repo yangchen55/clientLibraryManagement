@@ -47,7 +47,7 @@ const Register = () => {
     const { name, value } = e.target;
 
     setForm({ ...form, [name]: value });
-    console.log(form);
+    // console.log(form);
   };
 
   const handleOnSubmit = async (e) => {
@@ -57,7 +57,7 @@ const Register = () => {
 
     setResponse(data);
 
-    console.log("hi this is from register");
+    // console.log("hi this is from register");
   };
 
   return (
